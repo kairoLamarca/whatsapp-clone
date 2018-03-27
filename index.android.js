@@ -4,6 +4,6 @@ import App from './src/App';
 
 const whatsappClone = props => (
   <App />
-)
+);
 
 AppRegistry.registerComponent('whatsappClone', () => whatsappClone);
