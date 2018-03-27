@@ -11,3 +11,5 @@ adb shell input keyevent 46 46 //simula o double R para atualizar a aplicação 
 npm install --save firebase
 
 adb shell input keyevent 82 // ctrl + M
+
+npm install --save react-native-router-flux@3.38.0
