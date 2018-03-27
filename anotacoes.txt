@@ -13,3 +13,7 @@ npm install --save firebase
 adb shell input keyevent 82 // ctrl + M
 
 npm install --save react-native-router-flux@3.38.0
+
+npm install --save redux
+
+npm install --save react-redux
