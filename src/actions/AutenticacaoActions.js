@@ -19,3 +19,10 @@ export const modificaNome = (texto) => {
         payload: texto
     };
 };
+
+export const cadastraUsuario = ({ nome, email, senha }) => {
+    alert(nome);
+    return {
+        type: 'teste'
+    };
+};
