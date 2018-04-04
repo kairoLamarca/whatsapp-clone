@@ -14,7 +14,7 @@ const formLogin = props => {
             <View style={{ flex: 2 }}>
                 {/* O redux envio as propriedades por props */}
                 <TextInput value={props.email} style={{ fontSize: 20, height: 45 }} placeholder='E-mail' onChangeText={texto => props.modificaEmail(texto)} />
-                <TextInput value={props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha' onChangeText={texto => props.modificaSenha(texto)} />
+                <TextInput secureTextEntry value={props.senha} style={{ fontSize: 20, height: 45 }} placeholder='Senha' onChangeText={texto => props.modificaSenha(texto)} />
                 <TouchableHighlight onPress={() => Actions.formCadastro()}>
                     <Text style={{ fontSize: 20 }}>Ainda não tem cadastro? Cadastre-se</Text>
                 </TouchableHighlight>

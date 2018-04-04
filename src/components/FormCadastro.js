@@ -9,7 +9,7 @@ const formCadastro = props => (
             {/* O redux envio as propriedades por props */}
             <TextInput value={props.nome} placeholder="Nome" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaNome(texto)} />
             <TextInput value={props.email} ceholder="E-mail" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaEmail(texto)} />
-            <TextInput value={props.senha} placeholder="Senha" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaSenha(texto)} />
+            <TextInput secureTextEntry value={props.senha} placeholder="Senha" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaSenha(texto)} />
         </View>
         <View style={{ flex: 1 }}>
             <Button title="Cadastrar" color="#115E54" onPress={() => false} />
