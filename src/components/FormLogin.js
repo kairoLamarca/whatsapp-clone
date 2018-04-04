@@ -32,6 +32,6 @@ const mapStateToPros = state => (
         email: state.AutenticacaoReducer.email,
         senha: state.AutenticacaoReducer.senha
     }
-)
+);
 
 export default connect(mapStateToPros, { modificaEmail, modificaSenha })(formLogin);

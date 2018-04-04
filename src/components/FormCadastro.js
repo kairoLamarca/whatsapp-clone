@@ -1,14 +1,15 @@
 import React from 'react';
 import { View, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
+import { modificaEmail, modificaSenha } from '../actions/AutenticacaoActions';//Action Creators
 
 const formCadastro = props => (
     <View style={{ flex: 1, padding: 10 }}>
         <View style={{ flex: 4, justifyContent: 'center' }}>
             {/* O redux envio as propriedades por props */}
             <TextInput value={props.nome} placeholder="Nome" style={{ fontSize: 20, height: 45 }} />
-            <TextInput value={props.email} ceholder="E-mail" style={{ fontSize: 20, height: 45 }} />
-            <TextInput value={props.senha} placeholder="Senha" style={{ fontSize: 20, height: 45 }} />
+            <TextInput value={props.email} ceholder="E-mail" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaEmail(texto)} />
+            <TextInput value={props.senha} placeholder="Senha" style={{ fontSize: 20, height: 45 }} onChangeText={texto => props.modificaSenha(texto)} />
         </View>
         <View style={{ flex: 1 }}>
             <Button title="Cadastrar" color="#115E54" onPress={() => false} />
@@ -24,4 +25,4 @@ const mapStateToPros = state => (
     }
 );
 
-export default connect(mapStateToPros, null)(formCadastro);
+export default connect(mapStateToPros, { modificaEmail, modificaSenha })(formCadastro);
