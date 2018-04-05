@@ -21,3 +21,5 @@ npm install --save react-redux
 npm install --save firebase
 
 npm install --save redux-thunk
+
+npm install --save base-64
