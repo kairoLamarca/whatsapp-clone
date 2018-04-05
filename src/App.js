@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
+import { createStore, applyMiddleware } from 'redux';
 import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
 
 import Routes from './Routes';
 import reducers from './reducers';//ele ja está importando o index
@@ -23,7 +24,8 @@ class App extends Component {
 
     render() {
         return (
-            <Provider store={createStore(reducers)}>
+            //ReduxThunk serve para intermediar as chamadas das ActionsCreators, para que funcionem de forma sincrona
+            <Provider store={createStore(reducers, {}, applyMiddleware(ReduxThunk))}>
                 <Routes />
             </Provider>
         );
