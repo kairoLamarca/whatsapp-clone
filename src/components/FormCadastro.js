@@ -11,9 +11,7 @@ import {
 class formCadastro extends Component {
 
     _cadatraUsuario() {
-        const nome = this.props.nome;
-        const email = this.props.email;
-        const senha = this.props.senha;
+        const { nome, email, senha } = this.props;
 
         this.props.cadastraUsuario({ nome, email, senha });
     }

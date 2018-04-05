@@ -1,3 +1,5 @@
+import firebase from 'firebase';
+
 //ACTIONS CREATORS
 export const modificaEmail = (texto) => {
     return {
@@ -21,7 +23,11 @@ export const modificaNome = (texto) => {
 };
 
 export const cadastraUsuario = ({ nome, email, senha }) => {
-    alert(nome);
+
+    firebase.auth().createUserWithEmailAndPassword(email, senha)
+        .then(user => console.log(user))
+        .catch(erro => console.log(erro));
+
     return {
         type: 'teste'
     };
