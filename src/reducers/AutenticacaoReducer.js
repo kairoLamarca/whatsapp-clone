@@ -26,5 +26,9 @@ export default (state = INITIAL_STATE, action) => {
         return { ...state, erroCadastro: action.payload };
     }
 
+    if (action.type === 'cadastro_usuario_sucesso') {
+        return { ...state, nome: '', senha: '' };
+    }
+
     return state;
 };

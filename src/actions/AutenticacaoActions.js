@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 
 //ACTIONS CREATORS
 export const modificaEmail = (texto) => {
@@ -27,11 +28,14 @@ export const cadastraUsuario = ({ nome, email, senha }) => {
         firebase.auth().createUserWithEmailAndPassword(email, senha)
             .then(user => cadastroUsuarioSucesso(dispatch))
             .catch(erro => cadastroUsuarioErro(erro, dispatch));
-    }
+    };
 };
 
 const cadastroUsuarioSucesso = (dispatch) => {
-    dispatch({ type: 'sucesso' });
+    dispatch({ type: 'cadastro_usuario_sucesso' });
+
+    //Redireciona para a action de boas vindas
+    Actions.boasVindas();
 };
 
 const cadastroUsuarioErro = (erro, dispatch) => {
