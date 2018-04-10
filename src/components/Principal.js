@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
-import { TabViewAnimated, TabBar, SceneMap } from 'react-native-tab-view';
+import { TabViewAnimated, SceneMap } from 'react-native-tab-view';
+import TabBarMenu from './TabBarMenu';
 
 const initialLayout = {
     height: 0,
@@ -21,7 +22,7 @@ export default class Principal extends Component {
 
     _handleIndexChange = index => this.setState({ index });
 
-    _renderHeader = props => <TabBar {...props} />;
+    _renderHeader = props => <TabBarMenu {...props} />;
 
     _renderScene = SceneMap({
         first: Conversas,
