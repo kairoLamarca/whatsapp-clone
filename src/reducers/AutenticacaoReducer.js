@@ -23,7 +23,6 @@ const INITIAL_STATE = {
 //exporta uma função
 //a action importa os dados da action creator(AutenticacaoActions)
 export default (state = INITIAL_STATE, action) => {
-    console.log(action);
     switch (action.type) {
         case MODIFICA_EMAIL:
             return { ...state, email: action.payload };
