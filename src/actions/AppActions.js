@@ -21,12 +21,23 @@ export const adicionaContato = email => {
             .once('value')
             .then(snapshot => {
                 if (snapshot.val()) {
-                    console.log('Usuário existe');
+                    //email do contato que sera adicionado
+                    console.log(email);
+
+                    //email do usuario autenticado
+                    const { currentUser } = firebase.auth();
+                    let emailUsuarioB64 = b64.encode(currentUser.email);
+
+                    firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
+                        .push({ email, nome: 'Nome do contato' })
+                        .then(() => console.log('Sucesso'))
+                        .catch(erro => console.log(erro));
+
                 } else {
                     dispatch(
-                        { 
-                            type: ADICIONA_CONTATO_ERRO, 
-                            payload: 'E-mail informado não corresponde a um usuário válido!' 
+                        {
+                            type: ADICIONA_CONTATO_ERRO,
+                            payload: 'E-mail informado não corresponde a um usuário válido!'
                         }
                     );
                 }
