@@ -1,4 +1,7 @@
-import { MODIFICA_ADICIONA_CONTATO_EMAIL } from './types';
+import firebase from 'firebase';
+import b64 from 'base-64';
+
+import { MODIFICA_ADICIONA_CONTATO_EMAIL, ADICIONA_CONTATO_ERRO } from './types';
 
 export const modificaAdicionaContatoEmail = texto => {
     return {
@@ -8,9 +11,25 @@ export const modificaAdicionaContatoEmail = texto => {
 };
 
 export const adicionaContato = email => {
-    console.log(email);
 
-    return {
-        type: ''
+    return dispatch => {
+        let emailB64 = b64.encode(email);
+
+        // .on foca escutando
+        // .once é somente uma vez
+        firebase.database().ref(`/contatos/${emailB64}`)
+            .once('value')
+            .then(snapshot => {
+                if (snapshot.val()) {
+                    console.log('Usuário existe');
+                } else {
+                    dispatch(
+                        { 
+                            type: ADICIONA_CONTATO_ERRO, 
+                            payload: 'E-mail informado não corresponde a um usuário válido!' 
+                        }
+                    );
+                }
+            });
     };
 };
