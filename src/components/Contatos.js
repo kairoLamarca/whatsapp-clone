@@ -34,11 +34,11 @@ class Contatos extends Component {
                 enableEmptySections
                 dataSource={this.fonteDeDados}
                 renderRow={data => (
-                    <View>
-                        <Text>
+                    <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
+                        <Text style={{ fontSize: 25 }}>
                             {data.nome}
                         </Text>
-                        <Text>
+                        <Text style={{ fontSize: 18 }}>
                             {data.email}
                         </Text>
                     </View>
