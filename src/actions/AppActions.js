@@ -85,7 +85,6 @@ export const contatosUsuarioFetch = () => {
         //o listener on vai escutar e executar uma ação
         firebase.database().ref(`/usuario_contatos/${emailUsuarioB64}`)
             .on('value', snapshot => {
-                console.log(snapshot.val());
                 dispatch({ type: LISTA_CONTATO_USUARIO, payload: snapshot.val() });
             });
     };
