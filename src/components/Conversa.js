@@ -1,13 +1,17 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
+import { modificaMensagem } from '../actions/AppActions';
 
-export default class Conversa extends Component {
+class Conversa extends Component {
     render() {
         return (
             <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
                 <View style={{ flex: 1, paddingBottom: 20 }}></View>
                 <View style={{ flexDirection: 'row', height: 60 }}>
                     <TextInput
+                        value={this.props.mensagem}
+                        onChangeText={texto => this.props.modificaMensagem(texto)}
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
                     />
 
@@ -19,3 +23,11 @@ export default class Conversa extends Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return ({
+        mensagem: state.AppReducer.mensagem
+    });
+};
+
+export default connect(mapStateToProps, { modificaMensagem })(Conversa);
