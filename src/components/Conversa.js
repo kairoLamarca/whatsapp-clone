@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
-import { modificaMensagem } from '../actions/AppActions';
+import { modificaMensagem, enviarMensagem } from '../actions/AppActions';
 
 class Conversa extends Component {
     render() {
@@ -15,7 +15,7 @@ class Conversa extends Component {
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
                     />
 
-                    <TouchableHighlight onPress={() => false} underlayColor='$fff'>
+                    <TouchableHighlight onPress={() => this.props.enviarMensagem(this.props.mensagem)} underlayColor='$fff'>
                         <Image source={require('../imgs/enviar_mensagem.png')} />
                     </TouchableHighlight>
                 </View>
@@ -30,4 +30,4 @@ const mapStateToProps = state => {
     });
 };
 
-export default connect(mapStateToProps, { modificaMensagem })(Conversa);
+export default connect(mapStateToProps, { modificaMensagem, enviarMensagem })(Conversa);

@@ -97,3 +97,10 @@ export const modificaMensagem = texto => {
         payload: texto
     });
 };
+
+export const enviarMensagem = mensagem => {
+    console.log(mensagem);
+    return ({
+        type: 'xyz'
+    });
+};
