@@ -8,7 +8,8 @@ import {
     ADICIONA_CONTATO_SUCESSO,
     LISTA_CONTATO_USUARIO,
     MODIFICA_MENSAGEM,
-    LISTA_CONVERSA_USUARIO
+    LISTA_CONVERSA_USUARIO,
+    ENVIA_MENSAGEM_SUCESSO
 } from './types';
 
 export const modificaAdicionaContatoEmail = texto => {
@@ -116,7 +117,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
             .then(() => {
                 firebase.database().ref(`/mensagens/${contatoEmailB64}/${usuarioEmailB64}`)
                     .push({ mensagem, tipo: 'r' })
-                    .then(() => dispatch({ type: 'xyz' }));
+                    .then(() => dispatch({ type: ENVIA_MENSAGEM_SUCESSO }));
             })
             .then(() => { //armazenar o cabeçalho de conversa do usuário autenticado
                 firebase.database().ref(`/usuarios_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
@@ -129,7 +130,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
                         const dadosUsuario = _.first(_.values(snapshot.val()));
 
                         firebase.database().ref(`usuarios_conversas/${contatoEmailB64}/${usuarioEmailB64}`)
-                            .set({ nome: dadosUsuario.nome, email: usuarioEmail })
+                            .set({ nome: dadosUsuario.nome, email: usuarioEmail });
                     });
             });
     };
