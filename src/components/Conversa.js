@@ -4,6 +4,13 @@ import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
 import { modificaMensagem, enviarMensagem } from '../actions/AppActions';
 
 class Conversa extends Component {
+
+    _enviarMensagem() {
+        const { mensagem, contatoNome, contatoEmail } = this.props;
+
+        this.props.enviarMensagem(mensagem, contatoNome, contatoEmail);
+    }
+
     render() {
         return (
             <View style={{ flex: 1, marginTop: 50, backgroundColor: '#eee4dc', padding: 10 }}>
@@ -15,7 +22,8 @@ class Conversa extends Component {
                         style={{ flex: 4, backgroundColor: '#fff', fontSize: 18 }}
                     />
 
-                    <TouchableHighlight onPress={() => this.props.enviarMensagem(this.props.mensagem)} underlayColor='$fff'>
+                    {/* bind para não executar no contexto do component */}
+                    <TouchableHighlight onPress={this._enviarMensagem.bind(this)} underlayColor='#fff'>
                         <Image source={require('../imgs/enviar_mensagem.png')} />
                     </TouchableHighlight>
                 </View>

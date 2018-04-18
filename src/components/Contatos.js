@@ -32,7 +32,8 @@ class Contatos extends Component {
     renderRow(contato) {
         return (
             <TouchableHighlight
-                onPress={() => Actions.conversa()}
+                //Enviando parametros pela action
+                onPress={() => Actions.conversa({ title: contato.nome, contatoNome: contato.nome, contatoEmail: contato.email })}
             >
                 <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#CCC' }}>
                     <Text style={{ fontSize: 25 }}>
