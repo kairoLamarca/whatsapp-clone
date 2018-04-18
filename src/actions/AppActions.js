@@ -145,7 +145,7 @@ export const conversaUsuarioFetch = contatoEmail => {
     return dispatch => {
         firebase.database().ref(`mensagens/${usuarioEmailB64}/${contatoEmailB64}`)
             .on('value', snapshot => {
-                dispatch({ type: LISTA_CONVERSA_USUARIO, paylod: snapshot.val() });
+                dispatch({ type: LISTA_CONVERSA_USUARIO, payload: snapshot.val() });
             });
     };
 };

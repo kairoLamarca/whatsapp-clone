@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { View, Text, TextInput, Image, TouchableHighlight } from 'react-native';
-import { modificaMensagem, enviarMensagem } from '../actions/AppActions';
+import _ from 'lodash';
+import { View, TextInput, Image, TouchableHighlight } from 'react-native';
+import { modificaMensagem, enviarMensagem, conversaUsuarioFetch } from '../actions/AppActions';
 
 class Conversa extends Component {
+
+    componentWillMount() {
+        this.props.conversaUsuarioFetch(this.props.contatoEmail)
+    }
 
     _enviarMensagem() {
         const { mensagem, contatoNome, contatoEmail } = this.props;
@@ -33,9 +38,17 @@ class Conversa extends Component {
 }
 
 const mapStateToProps = state => {
+
+    const conversa = _.map(state.ListaConversaReducer, (val, uid) => {
+        return { ...val, uid };
+    });
+
+    console.log(conversa);
+
     return ({
+        conversa,
         mensagem: state.AppReducer.mensagem
     });
 };
 
-export default connect(mapStateToProps, { modificaMensagem, enviarMensagem })(Conversa);
+export default connect(mapStateToProps, { modificaMensagem, enviarMensagem, conversaUsuarioFetch })(Conversa);
