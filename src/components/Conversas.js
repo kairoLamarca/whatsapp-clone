@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, ListView } from 'react-native';
 import { connect } from 'react-redux';
 import _ from 'lodash';
 import { conversasUsuarioFetch } from '../actions/AppActions';
@@ -8,18 +8,33 @@ class Conversas extends Component {
 
     componentWillMount() {
         this.props.conversasUsuarioFetch();
-        console.log('componentWillMount', this.props.conversas);
+        this.criaFonteDeDados(this.props.conversas);
     }
 
     componentWillReceiveProps(nextProps) {
-        console.log('componentWillReceiveProps', nextProps.conversas);
+        this.criaFonteDeDados(nextProps.conversas);
+    }
+
+    criaFonteDeDados(conversas) {
+        const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+
+        this.dataSource = ds.cloneWithRows(conversas);
+    }
+
+    renderRow(conversa) {
+        return (
+            <View><Text>{conversa.nome}</Text></View>
+        );
     }
 
     render() {
         return (
-            <View>
-                <Text>Conversas</Text>
-            </View>
+            <ListView
+                enableEmptySections
+                dataSource={this.dataSource}
+                renderRow={this.renderRow}
+            />
+
         );
     }
 }
