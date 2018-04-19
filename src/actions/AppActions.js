@@ -121,7 +121,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
                     .then(() => dispatch({ type: ENVIA_MENSAGEM_SUCESSO }));
             })
             .then(() => { //armazenar o cabeçalho de conversa do usuário autenticado
-                firebase.database().ref(`/usuarios_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
+                firebase.database().ref(`/usuario_conversas/${usuarioEmailB64}/${contatoEmailB64}`)
                     .set({ nome: contatoNome, email: contatoEmail });
             })
             .then(() => { //armazenar o cabeçalho de conversa do contato
@@ -130,7 +130,7 @@ export const enviarMensagem = (mensagem, contatoNome, contatoEmail) => {
                     .then(snapshot => {
                         const dadosUsuario = _.first(_.values(snapshot.val()));
 
-                        firebase.database().ref(`usuarios_conversas/${contatoEmailB64}/${usuarioEmailB64}`)
+                        firebase.database().ref(`usuario_conversas/${contatoEmailB64}/${usuarioEmailB64}`)
                             .set({ nome: dadosUsuario.nome, email: usuarioEmail });
                     });
             });
@@ -162,5 +162,5 @@ export const conversasUsuarioFetch = () => {
             .on('value', snapshot => {
                 dispatch({ type: LISTA_CONVERSAS_USUARIO, payload: snapshot.val() });
             });
-    };
+    };   
 };
