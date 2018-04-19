@@ -23,7 +23,9 @@ class Conversas extends Component {
 
     renderRow(conversa) {
         return (
-            <View><Text>{conversa.nome}</Text></View>
+            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#ccc' }}>
+                <Text style={{ fontSize: 25 }}>{conversa.nome}</Text>
+            </View>
         );
     }
 
