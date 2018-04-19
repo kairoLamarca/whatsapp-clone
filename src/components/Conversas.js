@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { View, Text, ListView } from 'react-native';
+import { View, Text, ListView, TouchableHighlight } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import _ from 'lodash';
 import { conversasUsuarioFetch } from '../actions/AppActions';
 
@@ -23,9 +24,15 @@ class Conversas extends Component {
 
     renderRow(conversa) {
         return (
-            <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#ccc' }}>
-                <Text style={{ fontSize: 25 }}>{conversa.nome}</Text>
-            </View>
+            <TouchableHighlight
+                onPress={
+                    () => Actions.conversa({ title: conversa.nome, contatoNome: conversa.nome, contatoEmail: conversa.email })
+                }
+            >
+                <View style={{ flex: 1, padding: 20, borderBottomWidth: 1, borderColor: '#ccc' }}>
+                    <Text style={{ fontSize: 25 }}>{conversa.nome}</Text>
+                </View>
+            </TouchableHighlight >
         );
     }
 
