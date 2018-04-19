@@ -12,12 +12,15 @@ class Conversa extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        if (this.props.contatoEmail !== nextProps.contatoEmail) {
+            this.props.conversaUsuarioFetch(nextProps.contatoEmail);
+        }
         this.criaFonteDeDados(nextProps.conversa);
     }
 
     criaFonteDeDados(conversa) {
         const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-        this.dataSource = ds.cloneWithRows(conversa)
+        this.dataSource = ds.cloneWithRows(conversa);
     }
 
     _enviarMensagem() {
